@@ -1,5 +1,9 @@
 // @ts-check
+<<<<<<< Updated upstream
 const { defineConfig, devices } = require('@playwright/test');
+=======
+import { defineConfig, devices } from "@playwright/test";
+>>>>>>> Stashed changes
 
 /**
  * Read environment variables from file.
@@ -14,9 +18,9 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   expect: {
-    timeout: 5000
+    timeout: 5000,
   },
-  testDir: './tests',
+  testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -29,14 +33,18 @@ module.exports = defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    actionTimeout:4000,
-    navigationTimeout:4000,
+    actionTimeout: 4000,
+    navigationTimeout: 4000,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+<<<<<<< Updated upstream
     trace: 'on',
     screenshot:'on'
+=======
+    trace: "on-first-retry",
+>>>>>>> Stashed changes
   },
 
   /* Configure projects for major browsers */
@@ -72,10 +80,15 @@ module.exports = defineConfig({
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
     {
+<<<<<<< Updated upstream
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome',
         headless:true,
        },
+=======
+      name: "Google Chrome",
+      use: { ...devices["Desktop Chrome"], channel: "chrome", headless: false },
+>>>>>>> Stashed changes
     },
   ],
 
@@ -86,4 +99,3 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
