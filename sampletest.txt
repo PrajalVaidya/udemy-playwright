@@ -26,3 +26,8 @@ CASE II : When other elements are wrapped inside the <label> tag
 <label for="referenceId" > THIS IS LABEL
 <input id="referenceId" > This is a input field </input>
 </label>
+
+--- NOTES on handling JS pop ups and dialogs ---
+
+-- page.on('dialogs',dialogs=>dialogs.dismiss());
+    page.on('dialogs',dialogs=>dialogs.accpet());
