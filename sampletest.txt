@@ -12,3 +12,17 @@ write css with traversing from parent to child
 css -> parenttagname >> childtagname
 
 if needs to write the locator based on text
+
+
+
+--NOTES on using getByLabel Selector --
+-- getByLabel works in following cases only.
+
+CASE I
+<label for="referenceId" > THIS IS LABEL</label>
+<input id="referenceId" > This is a input field </input>
+
+CASE II : When other elements are wrapped inside the <label> tag
+<label for="referenceId" > THIS IS LABEL
+<input id="referenceId" > This is a input field </input>
+</label>

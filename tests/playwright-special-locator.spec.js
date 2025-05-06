@@ -19,3 +19,10 @@ test("Playwright Special locators", async ({ page }) => {
 
   //locator(css)
 });
+
+test("Playwright get by label", async ({ page }) => {
+  await page.goto("https://rahulshettyacademy.com/angularpractice/");
+  await page.getByLabel("Gender").selectOption("");
+
+  //locator(css)
+});
