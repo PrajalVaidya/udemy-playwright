@@ -31,3 +31,9 @@ CASE II : When other elements are wrapped inside the <label> tag
 
 -- page.on('dialogs',dialogs=>dialogs.dismiss());
     page.on('dialogs',dialogs=>dialogs.accpet());
+
+
+
+--- Working with iframes ----
+ const secandframe = await page.frameLocator("iframe[src*='calendar']");
+  await secandframe.getByRole("button", { name: "Next" }).click();
