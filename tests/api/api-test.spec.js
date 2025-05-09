@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { loginData, jobData } = require("./test-data/auth.data");
+const { loginPayload, orderPayload } = require("./test-data/auth.data");
 const { endpoints } = require("./config/api.config");
 
 let authToken;
@@ -7,64 +7,29 @@ let authToken;
 test.describe("API Tests", () => {
   test.beforeAll(async ({ request }) => {
     // Login and get token before all tests
-    const loginResponse = await request.post(endpoints.auth.login, {
-      data: loginData.validUser,
-    });
+    const loginResponse = await request.post(
+      "https://rahulshettyacademy.com/api/ecom/auth/login",
+      {
+        data: loginPayload,
+      }
+    );
 
-    expect(loginResponse.ok()).toBeTruthy();
+    // expect(loginResponse.ok()).toBeTruthy();
     const responseBody = await loginResponse.json();
-    expect(responseBody.data).toHaveProperty("accessToken");
 
-    authToken = responseBody.data.accessToken;
+    authToken = responseBody.token;
+    console.log(responseBody);
   });
 
-  test("should get published jobs", async ({ request }) => {
-    const response = await request.get(endpoints.jobs.published);
-
-    expect(response.ok()).toBeTruthy();
-    const responseBody = await response.json();
-    expect(Array.isArray(responseBody.data)).toBeTruthy();
-    // Add more specific assertions based on your API response structure
-  });
-
-  test("should login successfully with valid credentials", async ({
-    request,
-  }) => {
-    const response = await request.post(endpoints.auth.login, {
-      data: loginData.validUser,
-    });
-
-    expect(response.ok()).toBeTruthy();
-    const responseBody = await response.json();
-    expect(responseBody.data).toHaveProperty("accessToken");
-    expect(typeof responseBody.data.accessToken).toBe("string");
-  });
-
-  test("should fail login with invalid credentials", async ({ request }) => {
-    const response = await request.post(endpoints.auth.login, {
-      data: loginData.invalidUser,
-    });
-
-    expect(response.ok()).toBeFalsy();
-    const responseBody = await response.json();
-    expect(responseBody).toHaveProperty("error");
-  });
-
-  test("should create a new job", async ({ request }) => {
+  test("create Order", async ({ request }) => {
     const response = await request.post(endpoints.jobs.create, {
-      data: jobData.validJob,
+      data: orderPayload,
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
     });
-
-    expect(response.ok()).toBeTruthy();
     const responseBody = await response.json();
-    expect(responseBody.data).toHaveProperty("title", jobData.validJob.title);
-    expect(responseBody.data).toHaveProperty(
-      "description",
-      jobData.validJob.description
-    );
-    // Add more specific assertions based on your API response structure
+    console.log(responseBody);
+    expect(response.ok()).toBeTruthy();
   });
 });

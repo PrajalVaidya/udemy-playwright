@@ -1,12 +1,11 @@
-const BASE_URL = "https://ats-be.vedastudios.com.np/api/v1";
+const BASE_URL = "https://rahulshettyacademy.com/api/ecom";
 
 const endpoints = {
   auth: {
     login: `${BASE_URL}/auth/login`,
   },
-  jobs: {
-    published: `${BASE_URL}/job/published`,
-    create: `${BASE_URL}/job`,
+  order: {
+    create: `${BASE_URL}/order/create-order`,
   },
 };
 
