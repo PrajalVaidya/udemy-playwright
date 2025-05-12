@@ -3,7 +3,6 @@ const { loginPayload, orderPayload } = require("./test-data/auth.data");
 const { endpoints } = require("./config/api.config");
 const { ApiUtils } = require("./utils/api-utils");
 
-let authToken;
 let response;
 
 test.beforeAll(async ({}) => {

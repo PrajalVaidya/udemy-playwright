@@ -24,7 +24,7 @@ class ApiUtils {
   }
   async createOrder(orderPayload) {
     let response = {};
-    response.token = this.getToken();
+    response.token = await this.getToken();
     const orderResponse = await this.apiContext.post(
       "https://rahulshettyacademy.com/api/ecom/order/create-order",
       {
