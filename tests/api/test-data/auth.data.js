@@ -1,8 +1,10 @@
 const loginPayload = {
-  email: "anshika@gmail.com",
-  password: "Iamking@000",
+  userEmail: "anshika@gmail.com",
+  userPassword: "Iamking@000",
 };
-const orderPayload = {};
+const orderPayload = {
+  orders: [{ country: "Cuba", productOrderedId: "67a8dde5c0d3e6622a297cc8" }],
+};
 
 module.exports = {
   loginPayload,
