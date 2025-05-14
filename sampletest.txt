@@ -37,3 +37,30 @@ CASE II : When other elements are wrapped inside the <label> tag
 --- Working with iframes ----
  const secandframe = await page.frameLocator("iframe[src*='calendar']");
   await secandframe.getByRole("button", { name: "Next" }).click();
+
+
+-- using routes methods to intercept and modify request and response ---
+
+//basically how this function works is ,whenever it encounter the given url in the page.route(""),
+it routes the response from the url as given insde the route function.
+
+also when it encounters the url in request case , it sends the modified request payload as well.
+
+  await page.route(
+    "https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*",
+    async (route) => {
+      const response = await page.request.fetch(route.request());
+      let body = JSON.stringify(fakePayLoadOrders);
+      route.fulfill({
+        response,
+        body,
+      });
+      //intercepting response -APi response-> { playwright fakeresponse}->browser->render data on front end
+    }
+  );
+
+
+  await page.locator("button[routerlink*='myorders']").click();
+  await page.waitForResponse(
+    "https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*"
+  );

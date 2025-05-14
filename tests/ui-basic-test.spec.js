@@ -11,7 +11,6 @@ test("Browser context test", async ({ browser }) => {
   await page.locator("#username").fill("rahulshettyacademy");
   await page.locator("#password").fill("learning");
   await page.locator("#signInBtn").click();
-
   await page.locator(".card-body a").click();
 });
 

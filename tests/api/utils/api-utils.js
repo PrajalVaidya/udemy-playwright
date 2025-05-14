@@ -1,11 +1,4 @@
-const { test, expect } = require("@playwright/test");
-const { loginPayload, orderPayload } = require("../test-data/auth.data");
-const { endpoints } = require("../config/api.config");
-
 class ApiUtils {
-  /**
-   *
-   */
   constructor(apiContext, loginPayload) {
     this.apiContext = apiContext;
     this.loginPayload = loginPayload;

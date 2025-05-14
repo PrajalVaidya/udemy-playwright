@@ -1,8 +1,12 @@
 const { test, expect, request } = require("@playwright/test");
-const { loginPayload, orderPayload } = require("./test-data/auth.data");
-const { endpoints } = require("./config/api.config");
 const { ApiUtils } = require("./utils/api-utils");
-
+const loginPayload = {
+  userEmail: "anshika@gmail.com",
+  userPassword: "Iamking@000",
+};
+const orderPayload = {
+  orders: [{ country: "Japan", productOrderedId: "67a8dde5c0d3e6622a297cc8" }],
+};
 let response;
 
 test.beforeAll(async ({}) => {
@@ -13,7 +17,8 @@ test.beforeAll(async ({}) => {
 
 //create order is success
 test("@API Place the order", async ({ page }) => {
-  page.addInitScript((value) => {
+  console.log(response);
+  await page.addInitScript((value) => {
     window.localStorage.setItem("token", value);
   }, response.token);
   await page.goto("https://rahulshettyacademy.com/client");
