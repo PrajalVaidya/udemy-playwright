@@ -10,4 +10,5 @@ test("using route.abort method to abort the assest while requesting ", async ({
   await page.locator("#username").fill("rahulshettyacademy");
   await page.locator("#password").fill("learning");
   await page.locator("#signInBtn").click();
+  await expect(page.locator("[style*='block']"));
 });

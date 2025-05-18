@@ -11,6 +11,6 @@
     "checkJs": true,
     "resolveJsonModule": true
   },
-  "include": ["tests/**/*"],
+  "include": ["tests/**/*", "utils"],
   "exclude": ["node_modules"]
 } 

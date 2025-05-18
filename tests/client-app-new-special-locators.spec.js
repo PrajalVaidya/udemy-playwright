@@ -1,22 +1,23 @@
 const { test, expect } = require("@playwright/test");
 
-test("@Webst Client App login", async ({ page }) => {
+test("@Web Client App login", async ({ page }) => {
   //js file- Login js, DashboardPage
   const email = "anshika@gmail.com";
   const productName = "ZARA COAT 3";
   const products = page.locator(".card-body");
   await page.goto("https://rahulshettyacademy.com/client");
-  await page.getByPlaceholder("email@example.com").fill(email);
-  await page.getByPlaceholder("enter your passsword").fill("Iamking@000");
+  await page.getByPlaceholder("email@example.com").fill("vedatest@yopmail.com");
+  await page.getByPlaceholder("enter your passsword").fill("P@ssw0rd");
   await page.getByRole("button", { name: "Login" }).click();
   await page.waitForLoadState("networkidle");
   await page.locator(".card-body b").first().waitFor();
-
+  await page.getByLabel("password");
   await page
     .locator(".card-body")
     .filter({ hasText: "ZARA COAT 3" })
     .getByRole("button", { name: "Add to Cart" })
     .click();
+  await page.pause();
 
   await page
     .getByRole("listitem")

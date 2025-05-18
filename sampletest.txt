@@ -18,7 +18,7 @@ if needs to write the locator based on text
 --NOTES on using getByLabel Selector --
 -- getByLabel works in following cases only.
 
-CASE I
+CASE I : When referenceId is present
 <label for="referenceId" > THIS IS LABEL</label>
 <input id="referenceId" > This is a input field </input>
 
@@ -64,3 +64,30 @@ also when it encounters the url in request case , it sends the modified request 
   await page.waitForResponse(
     "https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*"
   );
+
+
+  -- For running test with multiple test datas
+    Method 1:
+      iterate a test over a testData.json file using
+
+      for(const data for dataset){
+        test("test case I",()=>{
+          ...steps1
+          ...stesp2
+          ..
+          ..
+        })
+      } 
+
+
+
+      Method 2:
+
+      use test fixtures 
+
+
+
+      -- running test in same file in parallel and serial
+      test.describe.configure({mode:"parallel"})
+      or
+      test.describe.configure({mode:"serial"})
