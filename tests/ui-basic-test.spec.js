@@ -1,7 +1,5 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
-const { createDiffieHellmanGroup } = require("node:crypto");
-const { CLIENT_RENEG_LIMIT } = require("node:tls");
 
 test("Browser context test", async ({ browser }) => {
   const context = await browser.newContext();
@@ -53,7 +51,7 @@ test("@Child windows hadl", async ({ browser }) => {
   console.log(await page.locator("#username").textContent());
 });
 
-test.only("handling child windows and new pages", async ({ browser }) => {
+test("handling child windows and new pages", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
   await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
@@ -68,4 +66,16 @@ test.only("handling child windows and new pages", async ({ browser }) => {
 
   // console.log(await newPage.locator('.red').textContent());
   console.dir(await newPage.locator(".red").textContent());
+});
+
+test("Browser context with injected cookies", async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+
+  await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+  console.log(await page.title());
+  await page.locator("#username").fill("rahulshettyacademy");
+  await page.locator("#password").fill("learning");
+  await page.locator("#signInBtn").click();
+  await page.locator(".card-body a").click();
 });

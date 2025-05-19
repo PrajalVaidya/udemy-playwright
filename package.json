@@ -5,7 +5,14 @@
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.3",
+    "allure": "^3.0.0-beta.13",
     "allure-playwright": "^3.2.2"
   },
-  "scripts": {}
+  "scripts": {
+    "webTest": "npx playwright test --grep @Web",
+    "regressionTest": "npx playwright test --grep @regression",
+    "smokeTes": "npx playwright test --grep @smoke",
+    "sanityTest": "npx playwright test --grep @snaity",
+    "allTest": "npx playwright test"
+  }
 }

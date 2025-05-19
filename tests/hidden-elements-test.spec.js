@@ -12,7 +12,7 @@ test("checking hidden elements", async ({ page }) => {
 
 test("handling JS popups and alerts(dialogs)", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
-  page.on("dialog", (dialog) => dialog.accept());
-
+  await page.waitForTimeout(2000);
   await page.getByRole("button", { name: "Alert" }).click();
+  page.on("dialog", (dialog) => dialog.accept());
 });
