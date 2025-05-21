@@ -23,7 +23,7 @@ module.exports = defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 3,
+  retries: process.env.CI ? 2 : 2,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 10 : 10,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -58,15 +58,15 @@ module.exports = defineConfig({
     //   use: { ...devices["Desktop Safari"] },
     // },
 
-    // /* Test against mobile viewports. */
-    // {
-    //   name: "Mobile Chrome",
-    //   use: { ...devices["Pixel 5"] },
-    // },
-    // {
-    //   name: "Mobile Safari",
-    //   use: { ...devices["iPhone 14 Plus"] },
-    // },
+    /* Test against mobile viewports. */
+    {
+      name: "Mobile Chrome",
+      use: { ...devices["Pixel 5"] },
+    },
+    {
+      name: "Mobile Safari",
+      use: { ...devices["iPhone 12"] },
+    },
 
     // /* Test against branded browsers. */
     // {
