@@ -1,17 +1,14 @@
-const { test, expect } = require('@playwright/test');
- 
-test('Check test data', async ({ page }) => {
-   const email = "anshika@gmail.com";
-   const productName = 'zara coat 3';
-   const products = page.locator(".card-body");
-   await page.goto("https://rahulshettyacademy.com/client");
-   await page.locator("#userEmail").fill(email);
-   await page.locator("#userPassword").fill("Iamking@000");
-   await page.locator("[value='Login']").click();
-//    await page.waitForLoadState('networkidle');
-   await page.locator(".card-body b").first().waitFor();
-   console.log( await page.locator(".card-body b").allTextContents());
-   await page.getByLabel('password');
-   await page.locator('//input[@id="userEmail" and @type="email"]')
- 
-})
+const { test, expect } = require("@playwright/test");
+
+test("check Open multiple tabs", async ({ browser, page }) => {
+  // Create a new browser context
+  const context = await browser.newContext();
+
+  // Open multiple tabs
+  const tabs = [];
+  for (let i = 0; i < 100; i++) {
+    const newPage = await context.newPage();
+    await newPage.goto("https://example.com/");
+    tabs.push(newPage);
+  }
+});
